@@ -90,51 +90,29 @@
 
     <!-- Page Content -->
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h1 class="mt-2">Welcome to The Wilde Barber</h1>
-                <p class="lead">Select a service from the menu below</p>
-            </div>
-            <div id="results" class="col-lg-8 order-1 mb-5"></div>
-            <div class="col-lg-4 order-2">
-                <form enctype="application/json" action="/post/json" method="post">
-                    <div class="form-group">
-                        <select class="form-control" name="sec_n">
-                            <p>Select a barber</p>
-                            <option value="0">Stephane Uhlmann</option>
-                            <option value="1">Roberto Wilde</option>
-                            <option value="2">Sirlei Rodrigues</option>
-                            <option value="3">Addrienne Doolin</option>
-                        </select>
-                        <input class="form-control mt-3" type="text" name="item" placeholder="Item">
-                        <input class="form-control mt-3" type="text" name="price" placeholder="Price">
-                        <button type="submit" class="btn btn-primary btn-block mt-3">Add</button>
-                    </div>
-                </form>
-                <button id="delete" class="btn btn-danger btn-block mt-3">Delete</button>
-                <p class="text-muted text-center">To delete a service, click the required row first</p>
-                <form>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">&euro;</span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Total" name="txtBillAmt">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <input type="checkbox" id="showVeg" aria-label="Checkbox for following text input">
-                            </div>
-                        </div>
-                        <input class="btn btn-block btn-secondary mt-2 mb-5" type="button" name="btnCalcBill"
-                            value="Calculate Bill" id="calcBill">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+	
+      <!--this page displays information like email, phone and opening hours-->
+    	<h1>The Wilde Barber</h1>
+        
+            <p>To contact us by email, please send all queries to info@thewildebarber.com</p>
+
+            <p>Phone Number: +353 (01)125-1578 </p>
+
+            <p>Opening Hours:</p>
+            <p>9:00 - 18:00 Monday</p>
+            <p>9:00 - 18:00 Tuesday</p>
+            <p>9:00 - 18:00 Wednesday</p>
+            <p>9:00 - 19:00 Thursday</p>
+            <p>9:00 - 17:00 Friday</p>
+            <p>9:00 - 17:00 Saturday</p>
+            <p>Closed - Sunday</p>
+
+
+</div>
 
 
     <footer class="footer">
-        <div class="text-center"><span class="text-muted">Copyright &copy; The Wilde Barber &reg;</span></div>
+        <div class="text-center"><span class="text-muted">Copyright &copy; The Wilde Barber &reg; </span></div>
     </footer>
 
     
