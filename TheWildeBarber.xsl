@@ -16,14 +16,11 @@
                 <xsl:for-each select="/barbermenu/section">
                     <tr>
                         <td colspan="3">
-                            <xsl:value-of select="@name" />
+                           Barber: <xsl:value-of select="@name" />
                         </td>
                     </tr>
                     <xsl:for-each select="service">
-                        <tr id="{position()}">
-                            <xsl:attribute name="seniorstaff">
-                                <xsl:value-of select="boolean(@seniorstaff)" />
-                            </xsl:attribute>
+                        <tr id="{position()}">                     
                             <td align="center">
                                 <input name="item0" type="checkbox" />
                             </td>
