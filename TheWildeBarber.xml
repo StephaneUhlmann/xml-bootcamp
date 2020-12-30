@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <barbermenu>
-  <section name="Stephane Uhlmann" seniorstaff="true">
+  <section name="Stephane Uhlmann">
     <service>
       <item>Hair cut</item>
       <price>55.00</price>
@@ -14,7 +14,7 @@
       <price>20.00</price>
     </service>
   </section>
-  <section name="Roberto Wilde" seniorstaff="true">
+  <section name="Roberto Wilde">
     <service>
       <item>Highligths</item>
       <price>120.00</price>

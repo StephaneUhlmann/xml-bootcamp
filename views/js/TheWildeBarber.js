@@ -19,25 +19,7 @@ function calculateBill(idMenuTable) {
     return Math.round(fBillTotal * 100.0) / 100.0;
 };
 
-function highlightSeniorStaff(idTable, bShowss) {
-    // if bShowss is true, then we're highlighting senior staff
-    // otherwise we're unhighlighting them.
-    var i = 0;
-    var oTable = document.getElementById(idTable);
-    var oTBODY = oTable.getElementsByTagName('tbody')[0];
-    var aTRs = oTBODY.getElementsByTagName('tr');
-    // walk through each of the table rows and see if it has a 
-    // "seniorstaff" attribute on it.
-    for (i = 0; i < aTRs.length; i++) {
-        if (aTRs[i].getAttribute('seniorstaff') == "true") {
-            if (bShowss) {
-                aTRs[i].style.backgroundColor = "lightGreen";
-            } else {
-                aTRs[i].style.backgroundColor = "";
-            };
-        };
-    };
-};
+
 // Utility function for getting the parent tag of a given tag
 // but only of a certain type (i.e. a TR, a TABLE, etc.)
 function getParentTag(oNode, sParentType) {
