@@ -10,8 +10,8 @@
       <price>30.00</price>
     </service>
     <service>
-      <item>Beard Groaming</item>
-      <price>20.00</price>
+      <item>Classic Hot Towel Shave and Face Massage</item>
+      <price>35.00</price>
     </service>
   </section>
   <section name="Roberto Wilde">
@@ -20,11 +20,11 @@
       <price>120.00</price>
     </service>
     <service>
-      <item>Hair cut</item>
+      <item>Wash and Cut</item>
       <price>55.00</price>
     </service>
     <service>
-      <item>Beard Cut</item>
+      <item>Zero and Skin Fade</item>
       <price>30.00</price>
     </service>
     <service>
@@ -34,15 +34,15 @@
   </section>
   <section name="Adrienne Doolin">
     <service>
-      <item>Hair cut</item>
-      <price>35.00</price>
+      <item>The Wilde Barber Full Grooming Experience</item>
+      <price>90.00</price>
     </service>
     <service>
       <item>Beard Cut</item>
       <price>20.00</price>
     </service>
     <service>
-      <item>Beard Groaming</item>
+      <item>Beard Grooming</item>
       <price>10.00</price>
     </service>
   </section>
