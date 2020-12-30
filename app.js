@@ -62,7 +62,7 @@ router.post('/post/json', function (req, res) {
         xmlFileToJs('TheWildeBarber.xml', function (err, result) {
             if (err) throw (err);
             
-            result.cafemenu.section[obj.sec_n].entree.push({'item': obj.item, 'price': obj.price});
+            result.barbermenu.section[obj.sec_n].service.push({'item': obj.item, 'price': obj.price});
 
             console.log(JSON.stringify(result, null, "  "));
 
@@ -87,7 +87,7 @@ router.post('/post/delete', function (req, res) {
         xmlFileToJs('TheWildeBarber.xml', function (err, result) {
             if (err) throw (err);
             
-            delete result.cafemenu.section[obj.section].entree[obj.entree];
+            delete result.barbermenu.section[obj.section].service[obj.service];
 
             console.log(JSON.stringify(result, null, "  "));
 
@@ -103,7 +103,7 @@ router.post('/post/delete', function (req, res) {
 
 });
 
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function () {
+server.listen(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function () {
     var addr = server.address();
     console.log("Server listnening at", addr.address + ":" + addr.port);
 });
