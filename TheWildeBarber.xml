@@ -15,7 +15,7 @@
     </service>
   </section>
   <section name="Roberto Wilde" seniorstaff="true">
-      <service>
+    <service>
       <item>Highligths</item>
       <price>120.00</price>
     </service>
@@ -46,7 +46,7 @@
       <price>10.00</price>
     </service>
   </section>
- <section name="Natalia Rodrigues">
+  <section name="Natalia Rodrigues">
     <service>
       <item>Student Hair cut</item>
       <price>25.00</price>
