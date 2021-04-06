@@ -15,6 +15,7 @@
     <link href="css/TheWildeBarber.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -99,21 +100,23 @@
             <div class="col-lg-4 order-2">
                 <button onclick="myFunction()" class="btn btn-success btn-block mb-3">Click here to add/delete
                     services</button>
+
                 <div id="myDIV" style="display: none;">
-                    <form enctype="application/json" action="/post/json" method="post">
+                    <form id="formElem" enctype="application/json" action="/services" method="post">
                         <div class="form-group">
-                            <select class="form-control" name="sec_n">
+                            <select class="form-control" name="barbername">
 
                                 <option value="0">Stephane Uhlmann</option>
                                 <option value="1">Roberto Wilde</option>
                                 <option value="2">Adrienne Doolin</option>
                                 <option value="3">Natalia Rodrigues</option>
                             </select>
-                            <input class="form-control mt-3" type="text" name="item" placeholder="Item" required>
+                            <input class="form-control mt-3" type="text" name="service" placeholder="Item" required>
                             <input class="form-control mt-3" type="number" name="price" placeholder="Price" required>
-                            <button type="submit" class="btn btn-primary btn-block mt-3">Add</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-3" onclick="submit()">Add</button>
                         </div>
                     </form>
+
                     <button id="delete" class="btn btn-danger btn-block mt-3">Delete</button>
                     <p class="text-muted text-center">To delete a service, click the required row first</p>
                     <form>
@@ -145,15 +148,114 @@
     <script src="js/table.js"></script>
     <script src="js/TheWildeBarber.js"></script>
     <script>
-        window.addEventListener("load", function () {
-            document.forms[1].txtBillAmt.value = calculateBill('menuTable');
-            document.querySelector("#calcBill").addEventListener("click", function () {
-                document.forms[1].txtBillAmt.value = calculateBill('menuTable');
+
+       /*  async function submit() {
+
+             let formData = new FormData();
+            formData.append("barbername", "John");
+            formData.append("service", "hair cut");
+            formData.append("price", "12334"); 
+
+            let response = await fetch('https://8000-tomato-bovid-sgrnmhi4.ws-eu03.gitpod.io/services', {
+                method: 'POST',
+                body: {
+                    "barbername": "Stephane Uhlmann",
+                    "service": "hair cut",
+                    "price": 10
+                }
             });
-            document.querySelector("#showVeg").addEventListener("click", function () {
-                highlightVegetarian('menuTable', this.checked);
+            let result = await response.json();
+            alert(result.message);
+        } */
+
+
+        /*  formElem.onsubmit = async (e) => {
+             e.preventDefault();
+ 
+             let response = await fetch('/services', {
+                 method: 'POST',
+                 body: new FormData(formElem)
+             });
+ 
+             let result = await response.json();
+ 
+             alert(result.message);
+         };
+  */
+
+
+
+        /* addService.onsubmit = async (e) => {
+           e.preventDefault();
+
+           let response = await fetch('https://8000-tomato-bovid-sgrnmhi4.ws-eu03.gitpod.io/services', {
+               method: 'POST',
+               body: {
+                   barbername: 'barbername',
+                   service: 'service',
+                   price: 123
+                   }
+           });
+
+           let result = await response.json();
+
+           alert(result.message);
+       };  */
+
+        /* const postBtn = document.getElementById('post-btn');
+
+        const sendHttpRequest = (method, url, data) => {
+            return fetch(url, {
+                method: POST,
+                body: JSON.stringify(data),
+                headers: data ? { 'Content-Type': 'application/json' } : {}
+            }).then(response => {
+                if (response.status >= 400) {
+                    // !response.ok
+                    return response.json().then(errResData => {
+                        const error = new Error('Something went wrong!');
+                        error.data = errResData;
+                        throw error;
+                    });
+                }
+                return response.json();
             });
-        });
+        };
+
+        const sendData = () => {
+            sendHttpRequest('POST', 'https://8000-tomato-bovid-sgrnmhi4.ws-eu03.gitpod.io/services', {
+                barbername: 'barbername',
+                service: 'service',
+                price: 33
+            })
+                .then(responseData => {
+                    console.log(responseData);
+                })
+                .catch(err => {
+                    console.log(err, err.data);
+                });
+        };
+
+        postBtn.addEventListener('click', sendData); */
+
+
+
+
+
+
+        /*
+                window.addEventListener("load", function () {
+        
+                    document.forms[1].txtBillAmt.value = calculateBill('menuTable');
+        
+                    document.querySelector("#calcBill").addEventListener("click", function () {
+                        document.forms[1].txtBillAmt.value = calculateBill('menuTable');
+                    });
+        
+                    document.querySelector("#showVeg").addEventListener("click", function () {
+                        highlightVegetarian('menuTable', this.checked);
+                    });
+                }); */
     </script>
 
 </body>

@@ -5,8 +5,7 @@ exports.createService = function(req, res) {
     newservice.save(function (err, service) { 
         if (err) { 
             res.status (400).json(err);
-        }
-
+        };
         res.json(service); 
 });
 };
