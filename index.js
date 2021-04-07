@@ -7,7 +7,7 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose');
 
 var app = express();
-var port = 8000;
+var port = 3000;
 
 app.use(bodyParser.json());
 app.use(logger('tiny'));
