@@ -1,14 +1,7 @@
 const express = require('express'),
 router = express.Router();
 
-var userCtrl = require('./user-controller'),
-serviceCtrl = require('./services-controller');
-
-router.post('/users', userCtrl.createUser);
-router.get('/users', userCtrl.getUsers);
-router.get('/users/:id', userCtrl.getUser);
-router.put('/users/:id', userCtrl.updateUser);
-router.delete('/users/:id', userCtrl.deleteUser);
+var serviceCtrl = require('./services-controller');
 
 router.post('/services', serviceCtrl.createService);
 router.get('/services', serviceCtrl.getServices);
