@@ -97,7 +97,11 @@
                 <h1 class="mt-2">Welcome to The Wilde Barber</h1>
                 <p class="lead">Select a service from the menu below</p>
             </div>
-            <div id="results" class="col-lg-8 order-1 mb-5"></div>
+            <div id="results" class="col-lg-8 order-1 mb-5">
+                <table>
+                    <!-- Table goes here -->
+                </table>
+            </div>
             <div class="col-lg-4 order-2">
                 <button onclick="myFunction()" class="btn btn-success btn-block mb-3">Click here to add/delete
                     services</button>
@@ -150,7 +154,54 @@
     <script src="js/TheWildeBarber.js"></script>
     <script>
 
-        axios.get('/services')
+        /* let barbername = [];
+        let service = [];
+        let price = [];
+        (async function getServices() {
+            try {
+                const { data } = await axios.get("https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services");
+                console.log(data.results);
+                barbername = data.results.map(barbername => barbername.barbername);
+                service = data.map(service => service.service);
+                price = data.map(price => price.price);
+                console.log(barbername);
+                console.log(service);
+                console.log(price);
+            } catch (error) {
+                console.log(error)
+            }
+        })(); */
+
+
+        /* function performSignIn() {
+            let headers = new Headers();
+
+            headers.append('Content-Type', 'application/json');
+            headers.append('Accept', 'application/json');
+            headers.append('Authorization', 'Basic ' + base64.encode(username + ":" + password));
+            headers.append('Origin', 'https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services');
+
+            fetch(sign_in, {
+                mode: 'cors',
+                credentials: 'include',
+                method: 'POST',
+                headers: headers
+            })
+                .then(response => response.json())
+                .then(json => console.log(json))
+                .catch(error => console.log('Authorization failed : ' + error.message));
+        } */
+
+
+
+
+
+        axios.get('https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services', {
+            params: {/* whatever data you want to send */ },
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
             .then(function (response) {
                 // handle success
                 console.log(response);
@@ -163,7 +214,7 @@
                 // always executed
             });
 
-        axios.post('/services', {
+        /* axios.post('https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services', {
             barbername: "Stephane Uhlmann",
             service: "hair cut",
             price: 10
@@ -186,7 +237,7 @@
             document.querySelector("#showVeg").addEventListener("click", function () {
                 highlightVegetarian('menuTable', this.checked);
             });
-        }); 
+        });  */
     </script>
 
 </body>

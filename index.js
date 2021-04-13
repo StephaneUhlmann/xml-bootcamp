@@ -12,6 +12,13 @@ var port = 3000;
 app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
+app.use(cors());
+
+// CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
+app.all('*', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://localhost:3000");
+    next();
+});
 
 app.listen(port, function(err){
     console.log('Listening on port: ' + port);
