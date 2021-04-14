@@ -1,8 +1,8 @@
 const http = require('http'),
 axios = require('axios'),
 logger = require('morgan'),
-cors = require('cors'),
 express = require('express'),
+cors = require('cors'),
 bodyParser = require('body-parser'),
 mongoose = require('mongoose');
 
@@ -16,7 +16,7 @@ app.use(cors());
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://localhost:3000");
+    res.header("Access-Control-Allow-Origin", "https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/");
     next();
 });
 

@@ -196,10 +196,12 @@
 
 
 
-        axios.get('https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services', {
-            params: {/* whatever data you want to send */ },
+        axios.get('/services', {
+            params: {},
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Origin': 'https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services'
             }
         })
             .then(function (response) {
@@ -214,10 +216,20 @@
                 // always executed
             });
 
-        /* axios.post('https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services', {
-            barbername: "Stephane Uhlmann",
-            service: "hair cut",
-            price: 10
+
+
+        axios.post('/services', {
+            params: {
+                barbername: "Stephane Uhlmann",
+                service: "hair cut",
+                price: 10
+            },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Origin': 'https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services'
+            }
+
         })
             .then(function (response) {
                 console.log(response);
@@ -226,18 +238,20 @@
                 console.log(error);
             });
 
-        window.addEventListener("load", function () {
+        /*
 
+    window.addEventListener("load", function () {
+
+        document.forms[1].txtBillAmt.value = calculateBill('menuTable');
+
+        document.querySelector("#calcBill").addEventListener("click", function () {
             document.forms[1].txtBillAmt.value = calculateBill('menuTable');
+        });
 
-            document.querySelector("#calcBill").addEventListener("click", function () {
-                document.forms[1].txtBillAmt.value = calculateBill('menuTable');
-            });
-
-            document.querySelector("#showVeg").addEventListener("click", function () {
-                highlightVegetarian('menuTable', this.checked);
-            });
-        });  */
+        document.querySelector("#showVeg").addEventListener("click", function () {
+            highlightVegetarian('menuTable', this.checked);
+        });
+    });  */
     </script>
 
 </body>

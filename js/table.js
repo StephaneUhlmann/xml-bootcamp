@@ -1,7 +1,7 @@
-let getservices = [
+/* let getservices = [
     { "_id": "606b3117022b5656cce4e4d6", "barbername": "Stephane Uhlmann", "service": "hair cut", "price": 15, "__v": 0 },
     { "_id": "606b7fa82c779165e3774ea3", "barbername": "Stephane Uhlmann", "service": "hair cut", "price": 15, "__v": 0 }
-];
+]; */
 
 /* let barbername = [];
 let service = [];
@@ -20,6 +20,30 @@ let price = [];
         console.log(error)
     }
 })(); */
+
+let getservices = [data];
+const { data } = axios.get('/services', {
+    params: {},
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': 'https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services'
+    }
+})
+    .then(function (response) {
+        // handle success
+        barbername = data.results.map(barbername => barbername.barbername);
+        service = data.map(service => service.service);
+        price = data.map(price => price.price);
+        console.log(response);
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+    .then(function () {
+        // always executed
+    });
 
 function generateTableHead(table, data) {
     let thead = table.createTHead();
