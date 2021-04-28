@@ -1,6 +1,7 @@
 var Service = require('./models/services')
 
 exports.createService = function(req, res) { 
+    res.json(req.body);
     var newservice = new Service(req.body);
     newservice.save(function (err, service) { 
         if (err) { 

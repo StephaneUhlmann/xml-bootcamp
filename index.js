@@ -15,11 +15,11 @@ app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
 app.use(cors());
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/");
+    res.header("Access-Control-Allow-Origin", "https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/");
     next();
 });
 

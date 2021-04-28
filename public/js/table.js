@@ -27,7 +27,7 @@ const { data } = axios.get('/services', {
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Origin': 'https://3000-crimson-fowl-h0ijaps8.ws-eu03.gitpod.io/services'
+        'Origin': 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services'
     }
 })
     .then(function (response) {
