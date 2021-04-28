@@ -7,12 +7,14 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose');
 
 var app = express();
-var port = 3000;
+var port = process.env.PORT || 8000;
+dotenv.config();
 
 app.use(bodyParser.json());
 app.use(logger('tiny'));
 app.use(require('./routes'));
 app.use(cors());
+app.use(express.static('public'))
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.all('*', (req, res, next) => {
@@ -24,7 +26,8 @@ app.listen(port, function(err){
     console.log('Listening on port: ' + port);
 });
 
-const dbURI = "mongodb://localhost/test";
+//const dbURI = "mongodb://localhost/test";
+const dbURI = process.env.DB_URL;
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
         .then((result) => console.log('connected to db'))
