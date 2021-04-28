@@ -155,178 +155,49 @@
     <script src="js/TheWildeBarber.js"></script>
     <script>
 
-/* 
-         let barbername = [];
-         let service = [];
-         let price = [];
-         (async function postServices() {
-             try {
-                 const { data } = await axios.post("/services");
-                 barbername = data.results.map(barbername => barbername.barbername);
-                 service = data.map(service => service.service);
-                 price = data.map(price => price.price);
-             } catch (error) {
-                 console.log(error)
-             }
-         })();  */
- 
- 
-          /* function performPost() {
-             let headers = new Headers();
-             headers.append('Content-Type', 'application/json');
-             headers.append('Accept', 'application/json');
-             headers.append('Authorization', 'Basic ' + base64.encode(username + ":" + password));
-             headers.append('Origin', 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services');
- 
-             fetch(sign_in, {
-                 mode: 'cors',
-                 credentials: 'include',
-                 method: 'POST',
-                 headers: headers
-             })
-                 .then(response => response.json())
-                 .then(json => console.log(json))
-                 .catch(error => console.log('Authorization failed : ' + error.message));
-         } 
- */
 
+//https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
+        async function postFormDataAsJson({ url, formData }) {
+            const plainFormData = Object.fromEntries(formData.entries());
+            const formDataJsonString = JSON.stringify(plainFormData);
 
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: formDataJsonString,
+            };
 
+            const response = await fetch(url, fetchOptions);
 
-        /* axios.get('/services', {
-            params: {},
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Origin': 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services'
-            }
-        })
-            .then(function (response) {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-
-
-
-        axios.post('/services', {
-            params: {
-                "barbername": "Stephane Uhlmann",
-                "service": "hair cut",
-                "price": 10
-            },
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Origin': 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services'
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
             }
 
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            return response.json();
+        }
 
-        
+        async function handleFormSubmit(event) {
+            event.preventDefault();
 
-    window.addEventListener("load", function () {
+            const form = event.currentTarget;
+            const url = form.action;
 
-        document.forms[1].txtBillAmt.value = calculateBill('menuTable');
+            try {
+                const formData = new FormData(form);
+                const responseData = await postFormDataAsJson({ url, formData });
 
-        document.querySelector("#calcBill").addEventListener("click", function () {
-            document.forms[1].txtBillAmt.value = calculateBill('menuTable');
-        });
-
-        document.querySelector("#showVeg").addEventListener("click", function () {
-            highlightVegetarian('menuTable', this.checked);
-        });
-    });   */
-
-
-        //https://blog.logrocket.com/how-to-make-http-requests-like-a-pro-with-axios/
-
-        /* axios({
-            method: 'post',
-            url: '/services',
-            data: {
-                barbername: "Roberto Wilde",
-                service: "hair cut",
-                price: 15
+                console.log({ responseData });
+            } catch (error) {
+                console.error(error);
             }
-        }); */
+        }
 
-        //https://www.geeksforgeeks.org/how-to-post-a-file-from-a-form-with-axios/
-        /*  window.addEventListener("load", () => {
-           const form = document.querySelector("form");
-
-           form.addEventListener("submit", (e) => {
-               e.preventDefault();
-               let data = new FormData(form);
-               axios({
-                   method: "post",
-                   url: "/services",
-                   data: data,
-               })
-                   .then((res) => {
-                       console.log(res);
-                   })
-                   .catch((err) => {
-                       throw err;
-                   });
-           });
-       });  */ 
-
-
-       async function postFormDataAsJson({ url, formData }) {
-	const plainFormData = Object.fromEntries(formData.entries());
-	const formDataJsonString = JSON.stringify(plainFormData);
-
-	const fetchOptions = {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
-		},
-		body: formDataJsonString,
-	};
-
-	const response = await fetch(url, fetchOptions);
-
-	if (!response.ok) {
-		const errorMessage = await response.text();
-		throw new Error(errorMessage);
-	}
-
-	return response.json();
-}
-
-async function handleFormSubmit(event) {
-	event.preventDefault();
-
-	const form = event.currentTarget;
-	const url = form.action;
-
-	try {
-		const formData = new FormData(form);
-		const responseData = await postFormDataAsJson({ url, formData });
-
-		console.log({ responseData });
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-const exampleForm = document.getElementById("form");
-exampleForm.addEventListener("submit", handleFormSubmit);
-
+        const exampleForm = document.getElementById("form");
+        exampleForm.addEventListener("submit", handleFormSubmit);
 
     </script>
 
