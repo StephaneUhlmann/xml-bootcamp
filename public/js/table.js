@@ -21,8 +21,51 @@ let price = [];
     }
 })(); */
 
-let getservices = [data];
-const { data } = axios.get('/services', {
+/* axios.get('/services', {
+    params: {},
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services'
+    }
+})
+    .then(function (response) {
+        return response.json();
+        console.log(response);
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+    .then(function (data) {
+        appendData(data);
+        // always executed
+    }); */
+
+    //https://howtocreateapps.com/fetch-and-display-json-html-javascript/
+    fetch('/services')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        function appendData(data) {
+            var mainContainer = document.getElementById("results");
+            for (var i = 0; i < data.length; i++) {
+                var div = document.createElement("div");
+                div.innerHTML = 'Barber: ' + data[i].barbername + ' Service: ' + data[i].service  + ' Price: ' + data[i].price;
+                mainContainer.appendChild(div);
+            }
+        }
+
+
+
+//let getservices = [data];
+/* const { data } = axios.get('/services', {
     params: {},
     headers: {
         'Content-Type': 'application/json',
@@ -43,9 +86,9 @@ const { data } = axios.get('/services', {
     })
     .then(function () {
         // always executed
-    });
+    }); */
 
-function generateTableHead(table, data) {
+/* function generateTableHead(table, data) {
     let thead = table.createTHead();
     let row = thead.insertRow();
     for (let key of data) {
@@ -70,4 +113,4 @@ function generateTable(table, data) {
 let table = document.querySelector("table");
 let data = Object.keys(getservices[0]);
 generateTableHead(table, data);
-generateTable(table, getservices);
+generateTable(table, getservices); */
