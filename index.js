@@ -1,13 +1,14 @@
 const http = require('http'),
 axios = require('axios'),
 logger = require('morgan'),
-express = require('express'),
 cors = require('cors'),
+express = require('express'),
 bodyParser = require('body-parser'),
-mongoose = require('mongoose');
+mongoose = require('mongoose'),
+dotenv = require("dotenv");
 
 var app = express();
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 3000;
 dotenv.config();
 
 app.use(bodyParser.json());
