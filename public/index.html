@@ -98,8 +98,17 @@
                 <p class="lead">Select a service from the menu below</p>
             </div>
             <div id="results" class="col-lg-8 order-1 mb-5">
-                <table>
-                    <!-- Table goes here -->
+                <table id="barbertable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Barber</th>
+                            <th>Service</th>
+                            <th>Price</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-rows">
+                    </tbody>
                 </table>
             </div>
             <div class="col-lg-4 order-2">
@@ -123,8 +132,8 @@
                         </div>
                     </form>
 
-                    <button id="delete" class="btn btn-danger btn-block mt-3">Delete</button>
-                    <p class="text-muted text-center">To delete a service, click the required row first</p>
+                 <!--    <button id="delete" class="btn btn-danger btn-block mt-3">Delete</button>
+                    <p class="text-muted text-center">To delete a service, click the required row first</p> -->
                     <form>
                 </div>
                 <div class="input-group">
@@ -151,54 +160,9 @@
     <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/table.js"></script> 
+    <script src="js/table.js"></script>
     <script src="js/TheWildeBarber.js"></script>
     <script>
-
-
-//https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
-        async function postFormDataAsJson({ url, formData }) {
-            const plainFormData = Object.fromEntries(formData.entries());
-            const formDataJsonString = JSON.stringify(plainFormData);
-
-            const fetchOptions = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-                body: formDataJsonString,
-            };
-
-            const response = await fetch(url, fetchOptions);
-
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                throw new Error(errorMessage);
-            }
-
-            return response.json();
-        }
-
-        async function handleFormSubmit(event) {
-            event.preventDefault();
-
-            const form = event.currentTarget;
-            const url = form.action;
-
-            try {
-                const formData = new FormData(form);
-                const responseData = await postFormDataAsJson({ url, formData });
-
-                console.log({ responseData });
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        const exampleForm = document.getElementById("form");
-        exampleForm.addEventListener("submit", handleFormSubmit);
-        
 
     </script>
 

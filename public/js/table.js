@@ -1,116 +1,86 @@
-/* let getservices = [
-    { "_id": "606b3117022b5656cce4e4d6", "barbername": "Stephane Uhlmann", "service": "hair cut", "price": 15, "__v": 0 },
-    { "_id": "606b7fa82c779165e3774ea3", "barbername": "Stephane Uhlmann", "service": "hair cut", "price": 15, "__v": 0 }
-]; */
+//https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
+//POST method to add barber users to the database
+        async function postFormDataAsJson({ url, formData }) {
+            const plainFormData = Object.fromEntries(formData.entries());
+            const formDataJsonString = JSON.stringify(plainFormData);
 
-/* let barbername = [];
-let service = [];
-let price = [];
-(async function getServices() {
-    try {
-        const { data } = await axios.get("/services");
-        console.log(data.results);
-        barbername = data.results.map(barbername => barbername.barbername);
-        service = data.map(service => service.service);
-        price = data.map(price => price.price);
-        console.log(barbername);
-        console.log(service);
-        console.log(price);
-    } catch (error) {
-        console.log(error)
-    }
-})(); */
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: formDataJsonString,
+            };
 
-/* axios.get('/services', {
-    params: {},
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Origin': 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services'
-    }
-})
-    .then(function (response) {
-        return response.json();
-        console.log(response);
-    })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-    .then(function (data) {
-        appendData(data);
-        // always executed
-    }); */
+            const response = await fetch(url, fetchOptions);
 
-    //https://howtocreateapps.com/fetch-and-display-json-html-javascript/
-    fetch('/services')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendData(data);
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
-        function appendData(data) {
-            var mainContainer = document.getElementById("results");
-            for (var i = 0; i < data.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Barber: ' + data[i].barbername + ' Service: ' + data[i].service  + ' Price: ' + data[i].price;
-                mainContainer.appendChild(div);
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            }
+
+            return response.json();
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.currentTarget;
+            const url = form.action;
+
+            try {
+                const formData = new FormData(form);
+                const responseData = await postFormDataAsJson({ url, formData });
+
+                console.log({ responseData });
+            } catch (error) {
+                console.error(error);
             }
         }
 
+        const elForm = document.getElementById("form");
+        elForm.addEventListener("submit", handleFormSubmit);
+        
 
-
-//let getservices = [data];
-/* const { data } = axios.get('/services', {
-    params: {},
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Origin': 'https://3000-green-primate-rjr358bl.ws-eu03.gitpod.io/services'
-    }
-})
+//https://howtocreateapps.com/fetch-and-display-json-html-javascript/
+//GET all data from the colection services 
+fetch('/services')
     .then(function (response) {
-        // handle success
-        barbername = data.results.map(barbername => barbername.barbername);
-        service = data.map(service => service.service);
-        price = data.map(price => price.price);
-        console.log(response);
+        return response.json();
     })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
+    .then(function (data) {
+        appendData(data);
     })
-    .then(function () {
-        // always executed
-    }); */
+    .catch(function (err) {
+        console.log('error: ' + err);
+    });
 
-/* function generateTableHead(table, data) {
-    let thead = table.createTHead();
-    let row = thead.insertRow();
-    for (let key of data) {
-        let th = document.createElement("th");
-        let text = document.createTextNode(key);
-        th.appendChild(text);
-        row.appendChild(th);
-    }
+//https://stackoverflow.com/questions/52587801/use-api-response-in-a-table
+//Method that recieves the data and creates a table in the frontend    
+function appendData(data) {
+    document.getElementById('table-rows').innerHTML = data.map((item) => {
+        return '<tr name=' + item._id + '><td>' + item.barbername + '</td><td>' + item.service + '</td><td>' + item.price + '</td><td><input type="button" value="X" onclick="DeleteRowFunction(this);"></td></tr>';
+    }).join('');
 }
 
-function generateTable(table, data) {
-    for (let element of data) {
-        let row = table.insertRow();
-        for (key in element) {
-            let cell = row.insertCell();
-            let text = document.createTextNode(element[key]);
-            cell.appendChild(text);
-        }
+//https://stackoverflow.com/questions/11553768/remove-table-row-after-clicking-table-row-delete-button
+//Method for deleting a row
+function DeleteRowFunction(btndel) {
+    /* axios.delete('services/'+ id)
+        .then(res => {
+            console.log(response);
+        }) */
+
+    if (typeof (btndel) == "object") {
+        $(btndel).closest("tr").remove();
+     var id = document.getElementById("key").nodeValue;
+     //   let id = $(btndel).closest("key");
+      //  var id = btndel.target.closest("[key]").getAttribute("key");
+        fetch('/services/' + id, { method: 'DELETE' })
+            .then(() => this.setState({ status: 'Delete successful' }));
+
+    } else {
+        return false;
     }
 }
-
-let table = document.querySelector("table");
-let data = Object.keys(getservices[0]);
-generateTableHead(table, data);
-generateTable(table, getservices); */
