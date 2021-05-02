@@ -60,29 +60,21 @@ fetch('/services')
 //Method that recieves the data and creates a table in the frontend    
 function appendData(data) {
     document.getElementById('table-rows').innerHTML = data.map((item) => {
-        return '<tr><td>' + item.barbername + '</td><td>' + item.service + '</td><td>' + item.price + '</td><td><input id=' + item._id + ' type="button" value="X" onclick="deleteRow(this)" onClick="window.location.reload();"></td></tr>';
+        return '<tr><td>' + item.barbername + '</td><td>' + item.service + '</td><td>' + item.price + '</td><td><input id=' + item._id + ' type="button" value="X" onclick="deleteRow(this)"></td></tr>';
     }).join('');
 }
 
-//https://stackoverflow.com/questions/11553768/remove-table-row-after-clicking-table-row-delete-button
-//Method for deleting a row
-/*
-function DeleteRowFunction(btndel) {
-    fetch('/services/' + btndel.getElementById("key"), { method: 'DELETE' })
+//https://stackoverflow.com/questions/3623110/get-an-elements-id
+//Delete row function and DELETE API request
+function deleteRow(btn) {
+    fetch('/services/' + btn.id, { method: 'DELETE' })
         .then(() => this.setState({ status: 'Delete successful' }));
 
-    if (typeof (btndel) == "object") {
-        $(btndel).closest("tr").remove();
+    if (typeof (btn) == "object") {
+        $(btn).closest("tr").remove();
     } else {
         return false;
     }
-}
-*/
-
-//https://stackoverflow.com/questions/3623110/get-an-elements-id
-function deleteRow(btn) {
-  fetch('/services/' + btn.id, { method: 'DELETE' })
-        .then(() => this.setState({ status: 'Delete successful' }));
 }
 
 
