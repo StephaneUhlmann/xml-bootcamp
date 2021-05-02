@@ -77,5 +77,25 @@ function deleteRow(btn) {
     }
 }
 
+//https://www.youtube.com/watch?v=2p39swI3_Rs
+        //Method to calculate the total bill
+        function calcTotalBill() {
+            var table = document.getElementById("barbertable"), sumVal = 0;
+
+            for (var i = 1; i < table.rows.length; i++) {
+                sumVal = sumVal + parseInt(table.rows[i].cells[2].innerHTML);
+            }
+            document.getElementById("totalBill").value = sumVal;
+        }
+
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 
 
