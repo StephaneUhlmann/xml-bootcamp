@@ -128,11 +128,12 @@
                                 required>
                             <input id="price" class="form-control mt-3" type="number" name="price" placeholder="Price"
                                 required>
-                            <button type="submit" class="btn btn-primary btn-block mt-3" onClick="window.location.reload();">Add</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-3"
+                                onClick="window.location.reload();">Add</button>
                         </div>
                     </form>
 
-                 <!--    <button id="delete" class="btn btn-danger btn-block mt-3">Delete</button>
+                    <!--    <button id="delete" class="btn btn-danger btn-block mt-3">Delete</button>
                     <p class="text-muted text-center">To delete a service, click the required row first</p> -->
                     <form>
                 </div>
@@ -163,6 +164,37 @@
     <script src="js/table.js"></script>
     <script src="js/TheWildeBarber.js"></script>
     <script>
+
+
+        //https://www.geeksforgeeks.org/how-to-access-tr-element-from-table-using-javascript/
+        // JavaScript Code to Highlight any
+        // row in the given table.
+        document.getElementById('barbertable')
+            .addEventListener('click', function (item) {
+
+                // To get tr tag 
+                // In the row where we click
+                var row = item.path[1];
+
+                var row_value = "";
+
+
+                for (var j = 0; j < row.cells.length; j++) {
+                  //  row_value += row.cells[j].innerHTML;
+                  //  row_value += " | ";
+                  row_value = parseInt(row.cells[2].innerHTML);
+                }
+
+                
+                console.log(row_value);
+                
+
+                // Toggle the highlight
+                if (row.classList.contains('highlight'))
+                    row.classList.remove('highlight');
+                else
+                    row.classList.add('highlight');
+            });
 
     </script>
 

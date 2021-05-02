@@ -40,4 +40,7 @@ table, th, td {
 .container{
    margin: 50px;
 }
+.highlight {
+            background-color: #b8b8b8;
+        }
 
